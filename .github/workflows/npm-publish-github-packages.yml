@@ -1,0 +1,28 @@
+name: Node.js App Deployment
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # The runner environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # This checks out your code in the runner environment
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14  # Choose your desired Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build  # If your app needs to be built
+
+      - name: Deploy
+        run: npm run deploy
